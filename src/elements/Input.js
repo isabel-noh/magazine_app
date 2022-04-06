@@ -2,22 +2,17 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Input = (props) => {
-    const { width, height, borderRight, borderLeft, borderTop, borderBottom, marginBottom } = props;
+    const {  _onChange, type, placeholder } = props;
 
-    const styles = {
-        width: width,
-        height: height,
-        borderRight: borderRight, 
-        borderLeft: borderLeft, 
-        borderTop: borderTop, 
-        borderBottom: borderBottom,
-        marginBottom: marginBottom,
-    }
+    
     return (
-        <InputBox {...styles}></InputBox>
+        <InputBox type={type} placeholder={placeholder} onChange = { _onChange } ></InputBox>
     );
 }
 Input.defaultProps = {
+    _onChange: () =>{} ,
+    placeholder: "text",
+    type: "text",
     width: "300px", 
     height: "30px",
     borderRight: "none",
@@ -25,15 +20,16 @@ Input.defaultProps = {
     borderTop: "none",
     borderBottom: "1px solid #BE01E5",
     marginBottom: "10px",
+    
 }
 const InputBox = styled.input`
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
-    border-right: ${(props) => props.borderRight};
-    border-left: ${(props) => props.borderLeft};
-    border-top: ${(props) => props.borderTop};
-    border-bottom: ${(props) => props.borderBottom};
-    margin-bottom:  ${(props) => props.marginBottom};
+    width: 300px;
+    height: 30px;
+    border-right: none;
+    border-left:none;
+    border-top: none;
+    border-bottom: 1px solid #BE01E5;
+    margin-bottom: 10px;
 `
 
 export default Input;
