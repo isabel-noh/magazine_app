@@ -1,44 +1,52 @@
 import React from "react";
-import {getCookie, deleteCookie} from '../shared/Cookie'
 import HomeIcon from '@mui/icons-material/Home';
-import { useHistory } from "react-router-dom";
+import { history } from "../redux/configStore";
 import Button from '@mui/material/Button';
-
+import {getCookie, deleteCookie} from '../shared/Cookie'
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { apiKey } from "../shared/firebase";
 
 const Header = (props) => {
-    const history = useHistory();
-    const [is_login, setIsLogin] = React.useState(false);
-
-    React.useEffect(() => {
-        let cookie = getCookie("user_id");
-        console.log(cookie);
-        if(cookie){
-            setIsLogin(true);
-        } else {
-            setIsLogin(false);
-        }
-    });
+    const dispatch = useDispatch();
+    const is_login = useSelector((state) => state.user.is_login);  // redux store에 is_login이 true인지 false인지 가져옴
+    const session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
+   
+    const is_session = sessionStorage.getItem(session_key) ? true : false;
+    console.log(is_session);
+    // React.useEffect(() => {
+    //     let cookie = getCookie("user_id");
+    //     if(cookie){  // 해당 이름의 쿠키가 있으면 true 
+    //         setIsLogin(true);
+    //     } else {  // 없으면 false 
+    //         setIsLogin(false);
+    //     }
+    // });
+    
 
     if(is_login){
         return(
-            <div className="Header">
+            <React.Fragment>
                 <HomeIcon onClick={() => history.push("/")} color="secondary" />
                 <div style={{display: "inline-flex", float: "right"}}>
-                    <Button onClick={() => history.push("")} variant="contained" color="secondary">My Page</Button>
-                    <Button onClick={() => {deleteCookie("user_id")}} 
-                            variant="contained" color="secondary" style={{marginRight: "10px"}}>Log Out</Button>
+                    <Button onClick={() => history.push("")} 
+                             style={{marginRight: "10px"}} variant="contained" color="secondary">Alert</Button>
+                    <Button onClick={() => {dispatch(userActions.logOut({}))}} 
+                            variant="contained" color="secondary">Log Out</Button>
                 </div>
-            </div>
+            </React.Fragment>
         )
     } else {
         return(
-            <div className="Header">
+            <React.Fragment>
                 <HomeIcon onClick={() => history.push("/")} color="secondary" />
                 <div style={{display: "inline-flex", float: "right"}}>
-                    <Button onClick={() => history.push("/login")} variant="contained" color="secondary" style={{marginRight: "10px"}}>Log In</Button>
-                    <Button onClick={() => history.push("/signup")} variant="contained" color="secondary">Sign Up</Button>
+                    <Button onClick={() => history.push("/login")} 
+                            variant="contained" color="secondary" style={{marginRight: "10px"}}>Log In</Button>
+                    <Button onClick={() => history.push("/signup")} 
+                            variant="contained" color="secondary">Sign Up</Button>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
