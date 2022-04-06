@@ -8,6 +8,7 @@ const Main = (props) => {
     console.log(props);
     return (
         <Post />
+        
         // <Wrap>
         //     <Card>
         //         <Head>
