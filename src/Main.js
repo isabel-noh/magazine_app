@@ -3,34 +3,17 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import Post from './components/Post';
+import Permit from "./shared/Permit";
+import CreateIcon from '@mui/icons-material/Create';
 
 const Main = (props) => {
     console.log(props);
     return (
-        <Post />
+        <React.Fragment>
+            <Post />
+            
+        </React.Fragment>
         
-        // <Wrap>
-        //     <Card>
-        //         <Head>
-        //             <Profile>
-        //                 <div>img01</div>
-        //                 <div>id</div>
-        //             </Profile>
-        //             <div>date</div>
-        //         </Head>
-        //         <Article>
-        //             <p> paragraph </p>
-        //             <p> photo </p>
-        //         </Article>
-        //         <Bottom>
-        //             <Comment>
-        //                 <div>Likes n</div>
-        //                 <div>Comments n</div>
-        //             </Comment>
-        //             <div>💜</div>
-        //         </Bottom>
-        //     </Card>
-        // </Wrap>
     )
 }
 //defaultProps

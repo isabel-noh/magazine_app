@@ -3,13 +3,16 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
+
 import User from "./modules/user";
+import Post from "./modules/post";
 
 export const history = createBrowserHistory();
 
 //스토어는 리듀서를 뭉친 걸 가지고 만듦
 const rootReducer = combineReducers({   //여러개의 reducer을 합칠 때에는 combineReducers({bucket1, bucket2 ,... })
     user: User,
+    post: Post,
     router: connectRouter(history), //history와 router연결, store에 브라우저 히스토리 저장
 });  
 

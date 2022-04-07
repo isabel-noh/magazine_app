@@ -6,14 +6,16 @@ import {getCookie, deleteCookie} from '../shared/Cookie'
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { apiKey } from "../shared/firebase";
+import { logoutFB } from "../redux/modules/user";
 
 const Header = (props) => {
     const dispatch = useDispatch();
     const is_login = useSelector((state) => state.user.is_login);  // redux store에 is_login이 true인지 false인지 가져옴
+    
     const session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
-   
     const is_session = sessionStorage.getItem(session_key) ? true : false;
     console.log(is_session);
+
     // React.useEffect(() => {
     //     let cookie = getCookie("user_id");
     //     if(cookie){  // 해당 이름의 쿠키가 있으면 true 
@@ -22,16 +24,15 @@ const Header = (props) => {
     //         setIsLogin(false);
     //     }
     // });
-    
 
-    if(is_login){
+    if(is_login && is_session){
         return(
             <React.Fragment>
-                <HomeIcon onClick={() => history.push("/")} color="secondary" />
+                <Button onClick={() => history.push("/")} color="secondary" style={{fontSize: "20px"}}>Share your Story</Button>
                 <div style={{display: "inline-flex", float: "right"}}>
                     <Button onClick={() => history.push("")} 
                              style={{marginRight: "10px"}} variant="contained" color="secondary">Alert</Button>
-                    <Button onClick={() => {dispatch(userActions.logOut({}))}} 
+                    <Button onClick= {() => {dispatch(userActions.logoutFB())} }
                             variant="contained" color="secondary">Log Out</Button>
                 </div>
             </React.Fragment>

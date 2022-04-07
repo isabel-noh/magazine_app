@@ -7,6 +7,8 @@ import { Input } from "../elements";
 import { signupFB } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { emailCheck } from "../shared/common";
+
 
 const SignUp = () => {
     const history = useHistory();
@@ -20,6 +22,10 @@ const SignUp = () => {
     const check = () => {
         if(!id || !pwd){
             window.alert('아이디 혹은 비밀번호를 입력하세요');
+            return;
+        }
+        if(!emailCheck(id)){
+            window.alert("이메일 형식에 맞지 않습니다. 확인해주세요.");
             return;
         }
         if(pwd !== pwd_chk){

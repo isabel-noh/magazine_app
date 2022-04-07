@@ -25,5 +25,6 @@ firebase.initializeApp(firebaseConfig);
 //firebase 인증 가져와서 쓰기
 const auth = firebase.auth();
 const apiKey = firebaseConfig.apiKey;
+const firestore = firebase.firestore();
 
-export {auth, apiKey};
+export {auth, apiKey, firestore};

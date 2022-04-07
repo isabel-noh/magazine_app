@@ -3,7 +3,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { auth } from "../../shared/firebase";
-import { getAuth, setPersistence, browserSessionPersistence, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, setPersistence, browserSessionPersistence, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
 //Action
 const LOG_IN = "LOG_IN";
@@ -65,13 +65,11 @@ const loginCheckFB = () => {
             if (user){         
                 dispatch(setUser({
                     id: user.email,
-                    user_name: user.displayName.replace,
+                    user_name: user.displayName.replace, //2-13 로그인 유지하기 다시 들어보기
                     user_profile: "", 
                     uid: user.uid,
                 }))        
               // User is signed in, see docs for a list of available properties
-              const uid = user.uid;
-              // ...
             } else {
               // User is signed out
               dispatch(logOut());
@@ -111,7 +109,16 @@ const signupFB = (id, pwd, user_name) => {
         });
     }
 }
-
+const logoutFB = () => {
+    return function ( dispatch, getState, { history }){
+        signOut(auth).then(() => {
+            dispatch(logOut());
+            history.replace("/");
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+}
 
 //Action function
 // const logIn = createAction(LOG_IN, (user) => ({user}));
@@ -150,6 +157,7 @@ const actionCreators = {
     getUser,
     loginFB,
     loginCheckFB,
+    logoutFB,
     //loginAction,
 }
 export { actionCreators };

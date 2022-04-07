@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Text = (props) => {
-    const {children, bold, color, size} = props;
+    const {children, bold, color, fontSize} = props;
 
     const styles = {
         bold: bold,
-        size: size,
+        fontSize: fontSize,
         color: color,
     }
     return (
@@ -19,10 +19,10 @@ Text.defaultProps = {
     children: null,
     bold: false,
     color: "black",
-    size: "14px",
+    fontSize: "14px",
 }
 const P = styled.p`
-    size: ${(props)=> props.size};
+    font-size: ${(props)=> props.fontSize};
     color: ${(props)=> props.color};
     font-weight: ${(props)=> (props.bold ? "800" : "400")};
 

@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Input = (props) => {
-    const {  _onChange, type, placeholder } = props;
+    const { _onChange, type, placeholder } = props;
 
-    
     return (
         <InputBox type={type} placeholder={placeholder} onChange = { _onChange } ></InputBox>
     );

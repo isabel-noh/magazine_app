@@ -17,9 +17,9 @@ const Image = (props) => {
 
     if(shape === "rectangle"){
         return (
-            <AspectOutter>
+            <AspectOuter>
                 <AspectInner {...styles}></AspectInner>
-            </AspectOutter>
+            </AspectOuter>
         )
     }
 
@@ -29,7 +29,7 @@ const Image = (props) => {
         </React.Fragment>
     );
 }
-const AspectOutter = styled.div`
+const AspectOuter = styled.div`
     width: 100%;
     min-width: 250px;
 `

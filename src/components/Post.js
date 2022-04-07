@@ -43,7 +43,7 @@ Post.defaultProps = {
     contents: "ㅎㅎ",
     comment_cnt: 10,
     insert_dt: "2022-04-04 10:00:00",
-  };
+};
   
 //style
 const Wrap = styled.div`
