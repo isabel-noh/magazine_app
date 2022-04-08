@@ -97,11 +97,11 @@ const addPostFB = (contents = "") => {
         };
 
         postDB.add({...user_info, ..._post}).then((doc)=> {
-            let post = {...user_info, ..._post}
-            dispatch(addPost());
+            let post = {user_info, ..._post, id: doc.id };
+            dispatch(addPost(post));
             history.replace("/");
         }).catch((err) => {
-            console.log("포스트 작성에 실패하였습니다.", err)
+            console.log("포스트 작성에 실패하였습니다.", err)  
         })
     }
 }
