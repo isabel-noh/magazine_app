@@ -47,6 +47,11 @@ function App() {
                 <Write />
             </Route>
             
+            <Permit>
+                <CreateIcon 
+                onClick={()=>history.push("/write")}
+                style={{position:"fixed", bottom:"0", right:"0", margin: "25px", backgroundColor: "#9c27b0", padding: "5px", color : "white", borderRadius:"5px", zIndex:"9999"}} />
+            </Permit>
             
         </div>
     );

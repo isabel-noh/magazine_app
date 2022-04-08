@@ -15,7 +15,7 @@ const Post = (props) => {
                         <Image shape="circle" src={props.src} />
                         <Text bold>{props.user_info.user_name}</Text>
                     </Profile>
-                    <Text>Jan 07 2023 17:00:00</Text>
+                    <Text>{props.insert_dt}</Text>
                 </Head>
                 <Article>
                     <p> {props.contents} </p>
@@ -23,7 +23,7 @@ const Post = (props) => {
                 </Article>
                 <Bottom>
                     <Comment>
-                        <Text bold>Likes {props.comment_cnt}</Text>
+                        <Text bold>Likes {props.like_cnt}</Text>
                         <Text bold>Comments {props.comment_cnt}</Text>
                     </Comment>
                     <FavoriteIcon style={{color: "#9c27b0", marginRight: "10px", fontSize: "2em"}}/>

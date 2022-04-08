@@ -14,7 +14,7 @@ const Header = (props) => {
     
     const session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
     const is_session = sessionStorage.getItem(session_key) ? true : false;
-    console.log(is_session);
+    console.log("세션있어?"+is_session);
 
     // React.useEffect(() => {
     //     let cookie = getCookie("user_id");

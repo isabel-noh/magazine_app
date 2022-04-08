@@ -65,7 +65,7 @@ const loginCheckFB = () => {
             if (user){         
                 dispatch(setUser({
                     id: user.email,
-                    user_name: user.displayName.replace, //2-13 로그인 유지하기 다시 들어보기
+                    user_name: user.displayName, 
                     user_profile: "", 
                     uid: user.uid,
                 }))        

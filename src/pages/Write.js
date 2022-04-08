@@ -3,17 +3,21 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { Input, Image, Text, TextArea } from "../elements";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 const Write = (props) => {
     const is_login = useSelector((state) => state.user.is_login);
+    const dispatch = useDispatch();
     const history = useHistory();
     const [contents, setContents] = React.useState("");
 
     const changeContents = (e) => {
         setContents(e.target.value);        
     }
-
+    const addPost = () => {
+        dispatch(postActions.addPostFB(contents));
+        console.log(contents);
+    }
     if(!is_login){
         return ( 
             <React.Fragment>
@@ -44,26 +48,10 @@ const Write = (props) => {
                             <Image shape="rectangle" src={""} />
                         </Article>
                     </div>
-                    <div>
-                        <input type="radio" style={{margin: "20px 0px"}} /> Image on the left, text on the right
-                        <Article>
-                            <Image shape="rectangle" src={""} />
-                            <TextArea placeholder="write your post" style={{border: "1px solid #BE01E5" }}> </TextArea>
-                        </Article>
-                    </div>
-                    <div>
-                        <input type="radio" style={{margin: "20px 0px"}} /> Image on the bottom, text on the top
-                        <Article1>
-                            {/* textarea placeholder 안나옴 */}
-                            <textarea placeholder="write your post" style={{ border: "1px solid #BE01E5", width: "100%", height: "200px"}}> </textarea>
-                            <Image shape="rectangle" src={""} />
-                        </Article1>
-                    </div>
+                    
                     <Button style={{width: "100%"}}  
                             variant="contained" color="secondary"
-                            onClick={() => history.push("/")
-                            
-                            }>Post</Button>
+                            onClick={addPost}>Post</Button>
                 </div>
             </Wrap>
         </React.Fragment>
@@ -87,3 +75,19 @@ const Article1 = styled.div`
     height: 350px;
 `
 export default Write; 
+
+// <div>
+//                         <input type="radio" style={{margin: "20px 0px"}} /> Image on the left, text on the right
+//                         <Article>
+//                             <Image shape="rectangle" src={""} />
+//                             <TextArea placeholder="write your post" style={{border: "1px solid #BE01E5" }}> </TextArea>
+//                         </Article>
+//                     </div>
+//                     <div>
+//                         <input type="radio" style={{margin: "20px 0px"}} /> Image on the bottom, text on the top
+//                         <Article1>
+//                             {/* textarea placeholder 안나옴 */}
+//                             <textarea placeholder="write your post" style={{ border: "1px solid #BE01E5", width: "100%", height: "200px"}}> </textarea>
+//                             <Image shape="rectangle" src={""} />
+//                         </Article1>
+//                     </div>
